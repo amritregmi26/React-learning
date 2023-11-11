@@ -10,6 +10,7 @@ const Card = (props) => {
             <h2> Age: {props.age} </h2>
             <h3> Address: {props.addr} </h3>
             </div>
+            {console.log(userData)}
         </>
     );
 }
