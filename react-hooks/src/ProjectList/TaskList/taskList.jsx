@@ -17,8 +17,17 @@ const TaskList = () => {
   function handleAdd(e)
   {
     e.preventDefault();
-    setTaskList([...taskList, task])
+    let taskItem = {
+      id: Math.floor(Math.random() * 1000000),
+      name: task
+    }
+    setTaskList([...taskList, taskItem])
     inputRef.current.value = "";
+  }
+
+  function handleDelete(id)
+  {
+    setTaskList(taskList.filter(task => task.id !== id));
   }
 
   return (
@@ -32,12 +41,14 @@ const TaskList = () => {
       <div className="display">
         <ul className="display-task">
           {
-            taskList.map(task => 
-            <li key={Math.floor(Math.random() * 1000000)} className="display-task__item">
-            {task}
+            taskList.map(task => (
+            <li key={task.id} className="display-task__item">
+            <span>{task.name}</span>
+
+            <button className="delete-task-btn" onClick={() => handleDelete(task.id)}>delete</button>
             </li>
 
-          )}
+          ))}
         </ul>
       </div>
     </>
