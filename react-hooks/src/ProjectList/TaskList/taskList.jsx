@@ -32,7 +32,7 @@ const TaskList = () => {
 
   return (
     <>
-      <div className="project-title">Task List</div>
+      <div className="project-title mt">Task List</div>
       <form action="" onSubmit={handleAdd}>
         <input ref = {inputRef} onChange={handleChange} type="text" placeholder="Enter Task" name="task" id="task" />
         <button className="add-task-btn" type="submit" > Add Task </button>
