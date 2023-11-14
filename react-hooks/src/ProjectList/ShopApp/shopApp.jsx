@@ -1,22 +1,32 @@
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import '../style.css'
 import './shopApp.css'
 
 const ShopApp = () => {
 
     const [products, setProducts] = useState([])
+    const [url, setUrl] = useState("http://localhost:3000/products")
+
+    const fetchProducts = useCallback(async () => {
+        let res = await fetch(url);
+        let data = await res.json();
+
+        setProducts(data);
+    }, [url])
 
     useEffect(() => {
-
-        fetch('http://localhost:3000/products')
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [])
+        fetchProducts();
+        console.log("render")
+    }, [fetchProducts])
 
     return (
         <>
             <div className="project-title mt">ShopApp</div>
             <section>
+                <div className="filter">
+                    <button onClick={() => setUrl("http://localhost:3000/products")} className="all">All</button>
+                    <button onClick={() => setUrl("http://localhost:3000/products?in_stock=true")} className="onlyStock">In Stock</button>
+                </div>
                     {
                         products.map((product) => (
                             <div key={product.id} className="card">

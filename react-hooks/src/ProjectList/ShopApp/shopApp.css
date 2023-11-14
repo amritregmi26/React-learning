@@ -48,6 +48,12 @@
   display: inline;
 }
 
+.filter
+{
+  display: flex;
+  justify-content: center;
+}
+
 button {
   border: 0px;
   border-radius: 5px;
