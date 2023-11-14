@@ -1,23 +1,12 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import '../style.css'
 import './shopApp.css'
+import useFetch from '../../hooks/useFetch'
 
 const ShopApp = () => {
 
-    const [products, setProducts] = useState([])
     const [url, setUrl] = useState("http://localhost:3000/products")
-
-    const fetchProducts = useCallback(async () => {
-        let res = await fetch(url);
-        let data = await res.json();
-
-        setProducts(data);
-    }, [url])
-
-    useEffect(() => {
-        fetchProducts();
-        console.log("render")
-    }, [fetchProducts])
+    const {data: products} = useFetch(url);
 
     return (
         <>
@@ -28,7 +17,7 @@ const ShopApp = () => {
                     <button onClick={() => setUrl("http://localhost:3000/products?in_stock=true")} className="onlyStock">In Stock</button>
                 </div>
                     {
-                        products.map((product) => (
+                        products && products.map((product) => (
                             <div key={product.id} className="card">
                                 <p className="id">{product.id}</p>
                                 <p className="name">{product.name}</p>
