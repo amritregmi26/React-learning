@@ -1,7 +1,10 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard';
+import useTitle from '../hooks/useTitle';
 
 const Home = () => {
+
+  useTitle("Home")
 
   const products = [
     {"id": 1, "name": "Sony Wh-Ch510 Bluetooth Wireless", "price": 149, "image": "/images/1001.png"},
