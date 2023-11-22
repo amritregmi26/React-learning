@@ -1,10 +1,13 @@
 import React from 'react'
 import ProductCard from '../components/ProductCard';
 import useTitle from '../hooks/useTitle';
+import { useCart } from '../context/CartContext';
 
 const Home = () => {
 
   useTitle("Home")
+
+  const {total} = useCart();
 
   const products = [
     {"id": 1, "name": "Sony Wh-Ch510 Bluetooth Wireless", "price": 149, "image": "/images/1001.png"},
